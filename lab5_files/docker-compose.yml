@@ -7,10 +7,20 @@ services:
             - "5000:5000"
         environment:
             - REDIS_URL=redis://redis:6379
+            - MONGO_URL=mongodb://mongo:27017
         depends_on:
             - redis
+            - mongo
 
     redis:
         image: "redis:alpine"
         ports:
             - "6379:6379"
+
+    mongo:
+        image: "mongo:latest"
+        ports:
+            - "27017:27017"
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: examplepassword
