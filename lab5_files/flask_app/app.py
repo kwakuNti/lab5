@@ -14,6 +14,8 @@ try:
         database="lab5",
         user="root",
         password="Nti2702."
+        port=5432  # Change this to 5433 if you updated the docker-compose file
+
     )
     cur = conn.cursor()
     cur.execute("CREATE TABLE IF NOT EXISTS visitors (id SERIAL PRIMARY KEY, visit_count INT);")
