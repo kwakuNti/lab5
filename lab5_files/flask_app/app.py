@@ -5,7 +5,7 @@ from pymongo import MongoClient
 app = Flask(__name__)
 
 r = redis.Redis(host="redis", port=6379)
-mongo_client = MongoClient(host="mongo", port=27017)
+mongo_client = MongoClient("mongodb://root:example@mongo:27017/")
 mongo_db = mongo_client["mydatabase"]
 visits_collection = mongo_db["visits"]
 
