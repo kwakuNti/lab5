@@ -10,7 +10,7 @@ redis_client = redis.StrictRedis(host='redis', port=6379, decode_responses=True)
 # Connect to PostgreSQL
 try:
     conn = psycopg2.connect(
-        host="localhost",
+        host="db",
         database="lab5",
         user="root",
         password="Nti2702."
