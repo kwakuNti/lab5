@@ -1,24 +1,30 @@
-version: '3.8'  # or a compatible version like '2.2'
+version: "3.8"
 
 services:
-  flask_app:
-    build: .
-    ports:
-      - "5000:5000"
-    depends_on:
-      - db
-      - redis
+    web:
+        build: ./flask_app  # Points to the directory where your Dockerfile is located
+        ports:
+            - "5000:5000"
+        environment:
+            - REDIS_URL=redis://redis:6379
+            - DB_HOST=db  # Added database host
+            - DB_NAME=postgres_db  # Database name
+            - DB_USER=postgres  # Database user
+            - DB_PASSWORD=password  # Database password
+        depends_on:
+            - redis
+            - db  # Add the dependency on the db service
 
-  db:
-    image: postgres:latest
-    environment:
-      POSTGRES_DB: postgres_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-    ports:
-      - "5432:5432"
+    redis:
+        image: "redis:alpine"
+        ports:
+            - "6379:6379"
 
-  redis:
-    image: redis:latest
-    ports:
-      - "6379:6379"
+    db:
+        image: postgres:latest
+        environment:
+            POSTGRES_DB: postgres_db
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: password
+        ports:
+            - "5432:5432"  # Expose PostgreSQL port
