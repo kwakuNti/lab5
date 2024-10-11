@@ -10,10 +10,10 @@ redis_client = redis.StrictRedis(host='redis', port=6379, decode_responses=True)
 # Connect to PostgreSQL
 try:
     conn = psycopg2.connect(
-        host="db",
-        database="postgres_db",
-        user="postgres",
-        password="password"
+        host="localhost",
+        database="lab5",
+        user="root",
+        password="Nti2702."
     )
     cur = conn.cursor()
     cur.execute("CREATE TABLE IF NOT EXISTS visitors (id SERIAL PRIMARY KEY, visit_count INT);")
