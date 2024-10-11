@@ -4,8 +4,11 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 
+# Connect to Redis
 r = redis.Redis(host="redis", port=6379)
-mongo_client = MongoClient("mongodb://root:example@mongo:27017/")
+
+# Connect to MongoDB with authentication
+mongo_client = MongoClient("mongodb://cole:Nti2702@mongo:27017/mydatabase?authSource=admin")
 mongo_db = mongo_client["mydatabase"]
 visits_collection = mongo_db["visits"]
 
